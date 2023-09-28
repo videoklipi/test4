@@ -1,0 +1,7 @@
+runtime: python39
+entrypoint: gunicorn -b :$PORT demo.wsgi
+env_variables:
+  DJANGO_SETTINGS_MODULE: 'demo.settings'
+handlers:
+- url: /.*
+  script: auto

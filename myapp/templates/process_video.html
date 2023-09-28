@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video and Tweet Link</title>
+    <!-- Include Google Fonts API link and define font-family -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+    <style>
+        /* Apply styles to the body for gradient background and centering */
+        body {
+            background: linear-gradient(to bottom, #9f47a7, #43a6d4); /* Adjust colors as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 100% of the viewport height */
+            font-family: 'Roboto', sans-serif; /* Apply Roboto font to the entire body */
+        }
+        /* Style the form container */
+        .form-container {
+            width: 400px; /* Set a fixed width for the container */
+            height: 300px; /* Set a fixed height for the container */
+            background-color: #ffffff; /* Background color for the form container */
+            border-radius: 10px; /* Rounded borders */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle effect */
+            position: relative; /* Position relative for containing the spinner */
+        }
+
+        /* Style the form elements */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            font-size: 18px; /* Adjust font size as needed */
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="file"] {
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ccc; /* Border for input fields */
+            border-radius: 5px; /* Rounded borders for input fields */
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Style the file input button */
+        input[type="file"] {
+            /* Hide the default file input button */
+            display: none;
+        }
+
+        .file-input-label {
+            background-color: #6484a1; /* Button background color */
+            color: #fff; /* Button text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px; /* Rounded borders for the button */
+            cursor: pointer;
+            font-size: 18px; /* Adjust font size as needed */
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+        }
+
+        .file-input-label:hover {
+            background-color: #65b5b8; /* Button background color on hover */
+        }
+        
+        /* Style the file input label to align with the button */
+        .file-input-label {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Style the submit button */
+        .submit-button {
+            background-color: #6484a1; /* Button background color */
+            color: #fff; /* Button text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px; /* Rounded borders for the button */
+            cursor: pointer;
+            font-size: 18px; /* Adjust font size as needed */
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+            margin-top: 10px; /* Adjust spacing from file input */
+        }
+
+        .submit-button:hover {
+            background-color: #2385b0; /* Button background color on hover */
+        }
+
+        /* Style the spinner */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #6484a1;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Initially hidden */
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Upload Video and Tweet Link</h2>
+        <form method="post" enctype="multipart/form-data" onsubmit="showSpinner()">
+            {% csrf_token %}
+            <!-- Add placeholder text for the tweet link input -->
+            <input type="text" id="tweet_link" name="tweet_link" required placeholder="Paste the tweet link here">
+            <!-- Label for the file input -->
+            <label class="file-input-label" for="video_file">Choose Video</label>
+            <!-- Actual file input -->
+            <input type="file" id="video_file" name="video_file" accept="video/*" required>
+            <!-- Submit button with spinner -->
+            <button type="submit" class="submit-button" id="submit-button">Submit</button>
+            <!-- Spinner (initially hidden) -->
+            <div class="spinner" id="spinner"></div>
+        </form>
+    </div>
+
+    <script>
+        function showSpinner() {
+            // Show the spinner when the form is submitted
+            document.getElementById("spinner").style.display = "block";
+            // Hide the submit button, tweet link field, and the "Choose Video" button
+            document.getElementById("submit-button").style.display = "none";
+            document.getElementById("tweet_link").style.display = "none";
+            document.querySelector('label[for="video_file"]').style.display = "none";
+            document.getElementById("video_file").style.display = "none";
+        }
+    </script>
+</body>
+</html>

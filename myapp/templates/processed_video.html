@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Processed Video Playback</title>
+    <!-- Include Google Fonts API link and define font-family -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+    <style>
+        /* Apply styles to the body for a clean background */
+        body {
+            background: linear-gradient(to bottom, #9f47a7, #43a6d4); /* Adjust colors as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Style the video container with rounded borders */
+        .video-container {
+            max-width: 80%; /* Adjust the video container width as needed */
+            text-align: center;
+        }
+
+        .video-container video {
+            max-width: 100%; /* Make the video responsive */
+            max-height: 80vh; /* Adjust the max-height as needed to make it smaller */
+            display: block;
+            margin: 0 auto; /* Center the video horizontally */
+            object-fit: contain; /* Ensure the entire video is visible */
+        }
+
+        /* Style the download button */
+        .download-button {
+            display: inline-block; /* Make the button inline */
+            background-color: #6484a1; /* Button background color */
+            color: #fff; /* Button text color */
+            padding: 10px 40px;
+            border: none;
+            border-radius: 5px; /* Rounded borders for the button */
+            cursor: pointer;
+            font-size: 18px; /* Adjust font size as needed */
+            text-align: center;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+            font-family: 'Roboto', sans-serif; /* Apply Roboto font to the button text */
+        }
+
+        .download-button:hover {
+            background-color: #2385b0; /* Button background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay loop>
+            <source src="media/processed_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Add a download button linking to the video file -->
+        <a class="download-button" href="media/processed_video.mp4" download>Download Video</a>
+    </div>
+</body>
+</html>

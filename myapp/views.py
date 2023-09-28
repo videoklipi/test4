@@ -62,7 +62,7 @@ def fetch_tweet_image(tweet_url):
     url = "https://tweetpik.com/api/v2/images"
 
     # Define your API key
-    api_key = "39cd8900-680d-4878-967e-b475a749596b"
+    api_key = "39fc8b64-5d40-4435-850e-66d36227b8e2"
 
     # Create a JSON payload with the user-provided tweet URL and custom options
     payload = {
@@ -141,7 +141,7 @@ def process_video_with_overlay(tweet_image_path, video_file):
             '-preset', 'ultrafast',
             '-c:a', 'aac', 
             '-strict', 'experimental', 
-            '-threads', '8',
+            '-threads', '2',
             processed_video_path
         ]
 
